@@ -75,18 +75,15 @@ const Map = () => {
   const handleSearch = () => {
     searchQuery
       ? searchWidget.search(searchQuery).then((results) => {
-          console.log(results);
           setSearchQuery('');
           if (results.numResults > 0) {
-            console.log(results.results[0].results);
             const [result] = results.results[0].results;
             setSearchResults(results.results[0].results);
             view.goTo(result.extent);
             const { latitude, longitude } = result.feature.geometry;
-            console.log(`lat: ${latitude} long: ${longitude}`);
           }
         })
-      : console.log('Empty input in search box');
+      : console.warn('Empty input in search box');
   };
   return (
     <div>
