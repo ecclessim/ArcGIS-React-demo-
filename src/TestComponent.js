@@ -34,6 +34,7 @@ const Map = () => {
         const popup = new Popup({
           autoOpenEnabled: false,
           location: null,
+          dockOptions: { position: 'top-left', buttonEnabled: true },
         });
         view.popup = popup;
         // Add click event listener to the view
@@ -80,7 +81,6 @@ const Map = () => {
             const [result] = results.results[0].results;
             setSearchResults(results.results[0].results);
             view.goTo(result.extent);
-            const { latitude, longitude } = result.feature.geometry;
           }
         })
       : console.warn('Empty input in search box');
