@@ -15,10 +15,11 @@ const Map = () => {
         'esri/views/MapView',
         'esri/widgets/BasemapToggle',
         'esri/widgets/Popup',
+        'esri/widgets/Search',
       ],
       { css: true }
     )
-      .then(([Map, MapView, BasemapToggle, Popup]) => {
+      .then(([Map, MapView, BasemapToggle, Popup, Search]) => {
         const map = new Map({
           basemap: 'streets-navigation-vector',
           labelsVisible: true,
@@ -29,7 +30,9 @@ const Map = () => {
           center: centerCoordinates,
           zoom: 16,
         });
-
+        const searchWidget = new Search({
+          view: view,
+        });
         // Create a new Popup object
         const popup = new Popup({
           autoOpenEnabled: false,
@@ -54,20 +57,15 @@ const Map = () => {
         });
 
         setView(view);
-        loadModules(['esri/widgets/Search']).then(([Search]) => {
-          const searchWidget = new Search({
-            view: view,
-          });
-          setSearchWidget(searchWidget);
-          searchWidget.on('select-result', (event) => {
-            setSearchResults(event.results);
-          });
-        });
+
         const basemapToggle = new BasemapToggle({
           view: view,
           nextBasemap: 'hybrid',
         });
         view.ui.add(basemapToggle, 'top-right');
+        view.ui.add(searchWidget, {
+          position: 'top-right',
+        });
         setBasemapToggle(basemapToggle);
       })
       .catch((err) => console.error(err));
@@ -87,18 +85,6 @@ const Map = () => {
   };
   return (
     <div>
-      <div className="searchBar">
-        <input
-          value={searchQuery}
-          type="text"
-          placeHolder="Search for a location"
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button type="button" onClick={handleSearch}>
-          Search
-        </button>
-      </div>
-
       <div id="mapContainer" style={{ height: '100vh' }} />
     </div>
   );
