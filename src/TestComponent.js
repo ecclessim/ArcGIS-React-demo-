@@ -79,7 +79,8 @@ const Map = () => {
 
   return (
     <div>
-      <button className='view-type-btn'
+      <button
+        className="view-type-btn"
         onClick={() =>
           setViewType((viewType) => (viewType === 'map' ? 'scene' : 'map'))
         }
