@@ -13,31 +13,11 @@ p {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.searchBar {
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.searchBar input[type='text'] {
+.view-type-btn {
   padding: 1rem;
   border: none;
-  background-color: var(--searchBar-bg-color);
-}
-
-.searchBar input[type='text']:focus,
-.searchBar input[type='text']:hover {
-  border-radius: var(--searchBar-border-radius);
-}
-
-.searchBar button {
-  margin-left: 1rem;
-  padding: 1rem;
-  border: none;
-}
-
-.searchBar button:hover,
-.searchBar button:active {
-  border-radius: var(--searchBar-border-radius);
+  color: white;
+  background-color: #252525;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
 }
